@@ -69,25 +69,29 @@
             else if (passaro.x <= 100 && passarovolta === 1) {
                 passarovolta = 0;
             }
-            //faz o passaro olhar para o lado que ele esta indo
-            if (passarovolta === 1){
-                passaro.flipX = true;
-            }
-            else{
-                passaro.flipX = false;
-            }
-            //faz o passaro subir e descer de forma errática sem deixar ele sair do mapa e
-            //cria um  jackpot surpesa se por alguma milagre o rng for exatamente 0.4
-            if (Math.random() < 0.4 && passaro.y < 500) {
-                passaro.y += Math.random() * 10;
-            }
-            else if (Math.random() > 0.4 && passaro.y > 100) { 
-                passaro.y -= Math.random() * 10;
-            }
-            else if (Math.random() == 0.4) { 
-                console.log("vai para a loteria meu deus");
-            }
 
+            //faz o passaro olhar para o lado que ele esta indo
+            passaro.flipX = passarovolta === 1;
+
+            //faz o passaro subir e descer de forma errática sem deixar ele sair do mapa
+            // e cria um  jackpot surpesa se por alguma milagre o rng for exatamente 0.4
+
+
+                while (passarovolta === 1 && Math.random() > 0.2) {
+            //quis usar o while pelos pontos extra
+            //ele faz que ele apenas suba e desca 80% das vezes (em teoria)     
+                    if (Math.random() < 0.4 && passaro.y < 500) {
+                        passaro.y += Math.random() * 15;
+                    }
+                    else if (Math.random() > 0.4 && passaro.y > 100) { 
+                        passaro.y -= Math.random() * 15s;
+                    }
+                    else if (Math.random() === 0.4) { 
+                        console.log("vai para a loteria meu deus");
+                    }
+
+                }
+            
 
             //interessantemente deixar o valor de decider para subir ou descer como 0.5 causa uma preferencia enorme para descer,
             //ja deixando como 0.4 mantem ele relativamente estável
@@ -95,11 +99,8 @@
             //isso é estranho pq Math.random() retorna um valor aleatório entre 0 e 1, então 0.5 deveria ser
             //o valor perfeito para decidir entre subir e descer :P
             //eu sei que computadores não são perfeitos e que a aleatoriedade deles é baseada em um algoritmo mas ?!?!??!??!?!?
-            //
-            //eu tentei usar o for ou o while no codigo mas 
-            //parecia que ele tomava prioridade sobre tudo e o jogo travava so para proccesar ele
         }
     </script>
-            
+
 </body>
 </html>
